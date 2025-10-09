@@ -3,14 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://NotNahid.github.io/neb",
+  "homepage": "https://NotNahid.github.io/vintage-book-app",
   "scripts": {
     "dev": "vite --port 8080",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -r https://github.com/NotNahid/neb.git"
+    "preview": "vite preview"
   },
   "dependencies": {
     "framer-motion": "^12.23.16",
