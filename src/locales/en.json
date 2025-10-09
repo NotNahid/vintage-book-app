@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "home": "Home",
+    "departments": "Departments",
+    "allBooks": "All Books",
+    "authors": "Authors",
+    "help": "Help/About"
+  },
+  "search": {
+    "placeholder": "Search by title, author, or ISBN...",
+    "voiceNotSupported": "Sorry, your browser doesn't support voice search.",
+    "noResults": "No results found"
+  },
+  "bookDetail": {
+    "notFound": "Book not found",
+    "department": "Department",
+    "isbn": "ISBN",
+    "serial": "Book Serial",
+    "year": "Year",
+    "available": "Available",
+    "checkedOut": "Checked Out",
+    "recommendations": "You might also like"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "message": "The page you are looking for does not exist.",
+    "goHome": "Go to Homepage"
+  },
+  "home": {
+    "loading": "Loading books...",
+    "scrollDown": "Scroll Down",
+    "departments": "Departments",
+    "books": "Books"
+  },
+  "about": {
+    "university": "European University of Bangladesh",
+    "library": "European University of Bangladesh Library",
+    "description1": "This is the vintage UI version of the university library catalog.",
+    "description2": "It is a work in progress.",
+    "visit": "Visit University Website"
+  },
+  "departments": {
+    "title": "Departments",
+    "notFound": "Department not found"
+  },
+  "allBooks": {
+    "title": "All Books"
+  },
+  "authorsPage": {
+    "title": "Authors",
+    "book": "book",
+    "books": "books"
+  },
+  "misc": {
+    "navigateHint": "Click to navigate"
+  }
+}
