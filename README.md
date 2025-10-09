@@ -1,6 +1,13 @@
 # Vintage Book App
 
-A modern and responsive web application for browsing a catalogue of vintage books. This project was built with React and Vite and features a clean, vintage-inspired UI.
+[![](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/NotNahid/vintage-book-app/blob/main/LICENSE)
+[![](https://img.shields.io/badge/npm-v0.0.0-blue.svg)](https://www.npmjs.com/package/vintage-ui-version)
+[![](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/NotNahid/vintage-book-app/blob/main/CONTRIBUTING.md)
+[![](https://img.shields.io/github/workflow/status/NotNahid/vintage-book-app/CI/main)](https://github.com/NotNahid/vintage-book-app/actions)
+
+A JavaScript library for building user interfaces for book catalogues.
+
+**Declarative:** Vintage Book App makes it painless to create interactive UIs. Design simple views for each state in your application, and Vintage Book App will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable, simpler to understand, and easier to debug.
 
 ![Vintage Book App Screenshot](https://raw.githubusercontent.com/NotNahid/vintage-book-app/main/public/preview-image.jpeg)
 
