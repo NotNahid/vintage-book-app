@@ -4,6 +4,7 @@
 [![](https://img.shields.io/badge/npm-v0.0.0-blue.svg)](https://www.npmjs.com/package/vintage-ui-version)
 [![](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/NotNahid/vintage-book-app/blob/main/CONTRIBUTING.md)
 [![](https://img.shields.io/github/workflow/status/NotNahid/vintage-book-app/CI/main)](https://github.com/NotNahid/vintage-book-app/actions)
+[![](https://api.komarev.com/a/v1/komarev/repo-visitor-count/NotNahid/vintage-book-app)](https://github.com/NotNahid/vintage-book-app)
 
 A JavaScript library for building user interfaces for book catalogues.
 
@@ -55,3 +56,11 @@ To get a local copy up and running, follow these simple steps.
 *   [Framer Motion](https://www.framer.com/motion/)
 *   [React Router](https://reactrouter.com/)
 *   [i18next](https://www.i18next.com/)
+
+## Contributors
+
+<a href="https://github.com/NotNahid/vintage-book-app/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=NotNahid/vintage-book-app" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
