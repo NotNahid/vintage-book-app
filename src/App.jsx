@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { lightTheme, darkTheme, theme as commonTheme } from "./theme";
 import { fetchBooks } from "./services/bookService";
