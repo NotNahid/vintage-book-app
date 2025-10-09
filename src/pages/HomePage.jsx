@@ -8,6 +8,7 @@ import { useAppContext } from "../context/AppContext";
 import DepartmentCard from "../components/DepartmentCard";
 import BookCard from "../components/BookCard";
 import { useAnimationOnce } from "../hooks/useAnimationOnce";
+import { TextType } from "react-bits";
 
 const HomePageContainer = styled.div`
   max-width: 960px;
@@ -184,7 +185,7 @@ const HomePage = () => {
       {searchTerm.trim() === '' && (
         <>
           <SectionHeader>
-            <SectionTitle>{t('home.departments')}</SectionTitle>
+            <SectionTitle><TextType>{t('home.departments')}</TextType></SectionTitle>
             <SeeAllLink to="/departments">{t('home.seeAll')}</SeeAllLink>
           </SectionHeader>
           <DepartmentsGrid
@@ -210,7 +211,7 @@ const HomePage = () => {
           {filteredBooks.length > 0 ? (
             <>
               <SectionHeader>
-                <SectionTitle>{t('home.books')}</SectionTitle>
+                <SectionTitle><TextType>{t('home.books')}</TextType></SectionTitle>
               </SectionHeader>
               <BooksGrid
                 variants={gridVariants}
