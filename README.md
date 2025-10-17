@@ -27,7 +27,8 @@ To get a local copy up and running, follow these simple steps.
 
 ### Prerequisites
 
-*   [Node.js](https://nodejs.org/) (which comes with npm)
+*   [Node.js](https://nodejs.org/) (v22.20.0 or later recommended)
+*   [npm](https://www.npmjs.com/) (which comes with Node.js)
 
 ### Installation
 
@@ -43,10 +44,30 @@ To get a local copy up and running, follow these simple steps.
     ```sh
     npm install
     ```
-4.  Run the development server
-    ```sh
-    npm run dev
-    ```
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm run dev`
+
+Runs the app in the development mode.<br />
+Open [http://localhost:8080](http://localhost:8080) to view it in your browser.
+
+### `npm run build`
+
+Builds the app for production to the `dist` folder.
+
+### `npm run lint`
+
+Lints the code for potential errors.
+
+### `npm run preview`
+
+Previews the production build locally.
+
+## Deployment
+
+This project is configured for deployment to GitHub Pages.
 
 ## Technologies Used
 
@@ -56,6 +77,8 @@ To get a local copy up and running, follow these simple steps.
 *   [Framer Motion](https://www.framer.com/motion/)
 *   [React Router](https://reactrouter.com/)
 *   [i18next](https://www.i18next.com/)
+*   [Papa Parse](https://www.papaparse.com/)
+*   [React Lazy Load Image Component](https://www.npmjs.com/package/react-lazy-load-image-component)
 
 ## Contributors
 
