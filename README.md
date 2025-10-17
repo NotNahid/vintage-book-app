@@ -71,14 +71,52 @@ This project is configured for deployment to GitHub Pages.
 
 ## Technologies Used
 
-*   [React](https://reactjs.org/)
-*   [Vite](https://vitejs.dev/)
-*   [styled-components](https://styled-components.com/)
-*   [Framer Motion](https://www.framer.com/motion/)
-*   [React Router](https://reactrouter.com/)
-*   [i18next](https://www.i18next.com/)
-*   [Papa Parse](https://www.papaparse.com/)
-*   [React Lazy Load Image Component](https://www.npmjs.com/package/react-lazy-load-image-component)
+This project is built with a modern front-end stack:
+
+*   **[React](https://reactjs.org/)**: A JavaScript library for building user interfaces. It allows for the creation of reusable UI components and declarative views.
+*   **[Vite](https://vitejs.dev/)**: A next-generation front-end tooling that provides a faster and leaner development experience for modern web projects.
+*   **[styled-components](https://styled-components.com/)**: A library for styling React components. It allows you to write actual CSS code to style your components.
+*   **[Framer Motion](https://www.framer.com/motion/)**: A production-ready motion library for React. It makes it easy to create beautiful animations and micro-interactions.
+*   **[React Router](https://reactrouter.com/)**: A standard library for routing in React. It enables the navigation among views of various components in a React Application.
+*   **[i18next](https://www.i18next.com/)**: An internationalization-framework written in and for JavaScript. It provides a complete solution to localize your product from web to mobile and desktop.
+*   **[Papa Parse](https://www.papaparse.com/)**: A powerful, in-browser CSV parser for JavaScript. It's used in this project to parse the book data.
+*   **[React Lazy Load Image Component](https://www.npmjs.com/package/react-lazy-load-image-component)**: A React component to lazy load images and other components/elements.
+
+## Troubleshooting
+
+Here are some common issues you might encounter and how to resolve them:
+
+### `npm install` fails
+
+If `npm install` fails, try the following:
+
+1.  **Clear the npm cache:**
+    ```sh
+    npm cache clean --force
+    ```
+2.  **Check your network connection:** A stable internet connection is required to download the dependencies.
+3.  **Permission issues:** On Linux and macOS, you might encounter permission errors. Avoid using `sudo` with `npm install`. A better solution is to use a Node Version Manager like [nvm](https://github.com/nvm-sh/nvm) to manage your Node.js installation and avoid permission issues.
+
+### Port already in use
+
+If you see an error like `Port 8080 is already in use` when running `npm run dev`, it means another application is using that port. You can either stop the other application or run this project on a different port:
+
+```sh
+npm run dev -- --port <different_port_number>
+```
+For example:
+```sh
+npm run dev -- --port 8081
+```
+
+### Dependency issues
+
+If you encounter issues with dependencies, you can try running `npm audit fix` to automatically fix any vulnerabilities. If that doesn't work, you might need to delete the `node_modules` directory and the `package-lock.json` file, and then run `npm install` again.
+
+```sh
+rm -rf node_modules package-lock.json
+npm install
+```
 
 ## Contributors
 
