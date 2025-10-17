@@ -1,7 +1,6 @@
 export const lightTheme = {
   name: "light",
   searchBar: '#FFFFFF',
-  body: "url('/vintage_background.png')",
   text: "#363537",
   textMuted: "#6c757d",
   toggleBorder: "#FFF",

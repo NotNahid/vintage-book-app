@@ -2,7 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled, { useTheme } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useAppContext } from '../context/AppContext';
+import ThemeToggle from './ThemeToggle';
+import PlayIcon from './icons/PlayIcon';
+import PauseIcon from './icons/PauseIcon';
 
 const FloatingNavContainer = styled(motion.div)`
   position: fixed;
@@ -61,6 +64,54 @@ const MenuItem = styled.div`
   }
 `;
 
+const ControlsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+`;
+
+const ControlButton = styled.button`
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border: none;
+  color: ${({ theme }) => theme.text};
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .icon {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0;
+    width: 30px;
+    height: 30px;
+
+    .text {
+      display: none;
+    }
+
+    .icon {
+      display: block;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+`;
+
 const Path = (props) => (
   <motion.path
     fill="transparent"
@@ -72,11 +123,11 @@ const Path = (props) => (
 );
 
 const pages = [
-  { name: 'Home', path: '/' },
-  { name: 'Departments', path: '/departments' },
-  { name: 'All Books', path: '/books' },
-  { name: 'Authors', path: '/authors' },
-  { name: 'Help/About', path: '/about' },
+  { name: 'nav.home', path: '/' },
+  { name: 'nav.departments', path: '/departments' },
+  { name: 'nav.allBooks', path: '/books' },
+  { name: 'nav.authors', path: '/authors' },
+  { name: 'nav.help', path: '/about' },
 ];
 
 const Backdrop = styled.div`
@@ -108,7 +159,7 @@ const DraggableMenu = () => {
   const navContainerRef = useRef(null);
   const navigate = useNavigate();
   const theme = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n, toggleLanguage, isAnimationEnabled, toggleAnimation } = useAppContext();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -217,9 +268,19 @@ const DraggableMenu = () => {
           >
             {pages.map((page) => (
               <MenuItem key={page.path} onClick={() => handleMenuItemClick(page.path)}>
-                {page.name}
+                {t(page.name)}
               </MenuItem>
             ))}
+            <ControlsContainer>
+              <ControlButton onClick={toggleLanguage}>
+                {i18n.language === 'en' ? 'BN' : 'EN'}
+              </ControlButton>
+              <ControlButton onClick={toggleAnimation}>
+                <span className="icon">{isAnimationEnabled ? <PauseIcon size={16}/> : <PlayIcon size={16}/>}</span>
+                <span className="text">{isAnimationEnabled ? "Pause" : "Play"}</span>
+              </ControlButton>
+              <ThemeToggle />
+            </ControlsContainer>
           </SideMenu>
         )}
       </FloatingNavContainer>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, Suspense } from "react";
 import { HashRouter as Router, Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
@@ -13,6 +12,13 @@ import ThemeToggle from "./components/ThemeToggle";
 import styled from "styled-components";
 import ScrollToTop from "./components/ScrollToTop";
 import GoToTopButton from "./components/GoToTopButton";
+import LoadingSpinner from "./components/LoadingSpinner";
+import GlobalStyle from "./globalStyles";
+import Iridescence from "./components/Iridescence";
+import { departments } from "./data/books";
+import { hexToRgb } from "./utils/color";
+
+import { SHORTCUTS } from "./constants";
 
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const BookDetailPage = React.lazy(() => import("./pages/BookDetailPage"));
@@ -24,51 +30,23 @@ const AuthorsPage = React.lazy(() => import("./pages/AuthorsPage"));
 const AuthorDetailPage = React.lazy(() => import("./pages/AuthorDetailPage"));
 const NotFoundPage = React.lazy(() => import("./pages/NotFoundPage"));
 
+const BackgroundContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+`;
 
 const StickyContainer = styled.div`
   position: sticky;
   top: 0;
   z-index: 10;
   min-height: 160px; /* Reserve space to prevent layout shift */
-`;
-
-const GlobalStyle = createGlobalStyle`
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
-  body {
-    background: ${({ theme }) => theme.name === 'dark' ? '#000' : 'url("https://i.pinimg.com/736x/fb/8a/3d/fb8a3d4087aa411fc510c8bab307d157.jpg") no-repeat center center fixed'};
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    color: ${({ theme }) => theme.text};
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
-  }
 
   @media (max-width: 768px) {
-    body {
-      font-size: 14px;
-    }
-
-    h1 {
-      font-size: 2rem;
-    }
-
-    h2 {
-      font-size: 1.75rem;
-    }
-
-    h3 {
-      font-size: 1.5rem;
-    }
+    min-height: 80px;
   }
 `;
 
@@ -118,43 +96,43 @@ function AppContent() {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === '/') {
+      if (event.key === SHORTCUTS.SEARCH) {
         event.preventDefault();
         searchInputRef.current?.focus();
       }
-      if (event.altKey && event.key === 'l') {
+      if (event.altKey && event.key === SHORTCUTS.TOGGLE_QUICK_NAV) {
         event.preventDefault();
         setIsQuickNavOpen(prev => !prev);
       }
-      if (event.altKey && event.key === 'c') {
+      if (event.altKey && event.key === SHORTCUTS.CLEAR_SEARCH) {
         event.preventDefault();
         handleSearch('', location.pathname);
       }
-      if (event.key === 'Escape') {
+      if (event.key === SHORTCUTS.ESCAPE) {
         setIsQuickNavOpen(false);
         setIsShortcutListOpen(false);
       }
-      if (event.altKey && event.key === 'd') {
+      if (event.altKey && event.key === SHORTCUTS.DEPARTMENTS) {
         event.preventDefault();
         navigate('/departments');
       }
-      if (event.altKey && event.key === 'a') {
+      if (event.altKey && event.key === SHORTCUTS.ALL_BOOKS) {
         event.preventDefault();
         navigate('/books');
       }
-      if (event.altKey && event.key === 'u') {
+      if (event.altKey && event.key === SHORTCUTS.AUTHORS) {
         event.preventDefault();
         navigate('/authors');
       }
-      if (event.altKey && event.key === 'h') {
+      if (event.altKey && event.key === SHORTCUTS.HOME) {
         event.preventDefault();
         navigate('/');
       }
-      if (event.altKey && event.key === '?') {
+      if (event.altKey && event.key === SHORTCUTS.ABOUT) {
         event.preventDefault();
         navigate('/about');
       }
-      if (event.altKey && event.key === 't') {
+      if (event.altKey && event.key === SHORTCUTS.TOGGLE_SHORTCUT_LIST) {
         event.preventDefault();
         setIsShortcutListOpen(prev => !prev);
       }
@@ -174,7 +152,7 @@ function AppContent() {
       <StickyContainer>
         <Navbar isScrolled={isScrolled} />
       </StickyContainer>
-      <Suspense fallback={null}>
+      <Suspense fallback={<LoadingSpinner />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/book/:id" element={<BookDetailPage />} />
@@ -193,11 +171,32 @@ function AppContent() {
 }
 
 function ThemedApp() {
-  const { theme } = useAppContext();
+  const { theme, isAnimationEnabled } = useAppContext();
+  const location = useLocation();
+  const [animationColor, setAnimationColor] = useState([1, 1, 1]);
+
+  useEffect(() => {
+    const pathSegments = location.pathname.split('/').filter(Boolean);
+    let newColor = '#FFFFFF';
+
+    if (pathSegments[0] === 'departments' && pathSegments[1]) {
+      const dept = departments.find(d => d.slug === pathSegments[1]);
+      if (dept) {
+        newColor = dept.animationColor;
+      }
+    }
+
+    setAnimationColor(hexToRgb(newColor));
+  }, [location, theme]);
 
   return (
     <ThemeProvider theme={theme === "light" ? light : dark}>
       <GlobalStyle />
+      {theme === 'light' && (
+        <BackgroundContainer>
+          <Iridescence color={animationColor} speed={isAnimationEnabled ? 0.2 : 0} amplitude={0.05} mouseReact={false} />
+        </BackgroundContainer>
+      )}
       <ScrollToTop />
       <AppContent />
     </ThemeProvider>

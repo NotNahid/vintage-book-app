@@ -30,7 +30,8 @@
     "loading": "Loading books...",
     "scrollDown": "Scroll Down",
     "departments": "Departments",
-    "books": "Books"
+    "books": "Books",
+    "seeAll": "See All"
   },
   "about": {
     "university": "European University of Bangladesh",
@@ -44,7 +45,10 @@
     "notFound": "Department not found"
   },
   "allBooks": {
-    "title": "All Books"
+    "title": "All Books",
+    "showAvailableOnly": "Show Available Only",
+    "allDepartments": "All Departments",
+    "allAuthors": "All Authors"
   },
   "authorsPage": {
     "title": "Authors",
@@ -53,5 +57,11 @@
   },
   "misc": {
     "navigateHint": "Click to navigate"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "of": "of"
   }
 }

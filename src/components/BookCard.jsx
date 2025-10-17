@@ -106,6 +106,7 @@ const BookCard = ({ book }) => {
             <BookCover
               alt={`Cover of ${title}`}
               src={coverUrl}
+              loading="lazy"
             />
           ) : (
             <PlaceholderCover title={title} />

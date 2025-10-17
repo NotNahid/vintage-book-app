@@ -12,7 +12,7 @@ export const useAppContext = () => useContext(AppContext);
 export const AppProvider = ({ children }) => {
   const [searchTerms, setSearchTerms] = useState({});
   const [isQuickNavOpen, setIsQuickNavOpen] = useState(false);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -57,6 +57,7 @@ export const AppProvider = ({ children }) => {
   const [filteredAuthorBooks, setFilteredAuthorBooks] = useState([]);
 
   const [useNewBookDetailPage, setUseNewBookDetailPage] = useState(true);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   const toggleBookDetailPageVersion = () => {
     setUseNewBookDetailPage(prev => !prev);
@@ -66,11 +67,21 @@ export const AppProvider = ({ children }) => {
   const debouncedAuthorSearchTerm = useDebounce(authorSearchTerm, 500);
   const debouncedDepartmentSearchTerm = useDebounce(departmentSearchTerm, 500);
 
-  // Theme state with localStorage persistence
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
     return savedTheme || 'light';
   });
+
+  const [isAnimationEnabled, setIsAnimationEnabled] = useState(true);
+
+  const toggleAnimation = () => {
+    setIsAnimationEnabled(prev => !prev);
+  };
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'en' ? 'bn' : 'en';
+    i18n.changeLanguage(newLang);
+  };
 
   useEffect(() => {
     localStorage.setItem('theme', theme);
@@ -88,7 +99,6 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem('departmentSearchHistory', JSON.stringify(departmentSearchHistory));
   }, [departmentSearchHistory]);
 
-  // Set initial language from localStorage
   useEffect(() => {
     const savedLang = localStorage.getItem('language');
     if (savedLang) {
@@ -96,7 +106,6 @@ export const AppProvider = ({ children }) => {
     }
   }, [i18n]);
 
-  // Save language to localStorage on change
   useEffect(() => {
     const handleLanguageChanged = (lng) => {
       localStorage.setItem('language', lng);
@@ -136,6 +145,7 @@ export const AppProvider = ({ children }) => {
 
         setAllAuthors(authors);
         setFilteredAuthors(authors);
+        setIsDataLoaded(true);
       })
       .catch((err) => {
         setError(err);
@@ -371,6 +381,12 @@ export const AppProvider = ({ children }) => {
     handleSearchInAuthor,
     useNewBookDetailPage,
     toggleBookDetailPageVersion,
+    isAnimationEnabled,
+    toggleAnimation,
+    t,
+    i18n,
+    toggleLanguage,
+    isDataLoaded,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

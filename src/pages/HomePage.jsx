@@ -7,8 +7,26 @@ import { departments } from "../data/books";
 import { useAppContext } from "../context/AppContext";
 import DepartmentCard from "../components/DepartmentCard";
 import BookCard from "../components/BookCard";
+import Carousel from "../components/Carousel";
 import { useAnimationOnce } from "../hooks/useAnimationOnce";
+import { useIsMobile } from "../hooks/useIsMobile";
 
+const TexturedCardWrapper = styled.div`
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+    opacity: 0.05;
+    pointer-events: none;
+    border-radius: 30px;
+  }
+`;
 
 const HomePageContainer = styled.div`
   max-width: 960px;
@@ -25,19 +43,30 @@ const SectionHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    margin-top: 1rem;
+  }
 `;
 
 const SeeAllLink = styled(Link)`
   color: ${({ theme }) => theme.text};
   text-decoration: none;
   font-weight: bold;
-  
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+
   @media (min-width: 769px) {
-    display: none; /* Hide on desktop where the full grid is visible */
+    display: none;
   }
 
   &:hover {
-    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 `;
 
@@ -51,26 +80,10 @@ const StyledLink = styled(Link)`
 `;
 
 const DepartmentsGrid = styled(motion.div)`
-  /* Desktop-first styles */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 1.5rem;
   margin-top: 1rem;
-
-  /* Mobile overrides for horizontal scrolling chips */
-  @media (max-width: 768px) {
-    display: flex;
-    overflow-x: auto;
-    gap: 1rem;
-    padding: 0.5rem 0 1.5rem 0;
-    scroll-snap-type: x mandatory;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
 `;
 
 const DepartmentItem = styled(motion.div)`
@@ -165,6 +178,7 @@ const HomePage = () => {
   const [showScrollIndicator, setShowScrollIndicator] = useState(
     sessionStorage.getItem('hasSeenScrollIndicator') !== 'true'
   );
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -188,19 +202,27 @@ const HomePage = () => {
             <SectionTitle>{t('home.departments')}</SectionTitle>
             <SeeAllLink to="/departments">{t('home.seeAll')}</SeeAllLink>
           </SectionHeader>
-          <DepartmentsGrid
-            variants={gridVariants}
-            initial={shouldAnimate ? "hidden" : "show"}
-            animate="show"
-          >
-            {departments.map((dept) => (
-              <DepartmentItem key={dept.name} variants={itemVariants}>
-                <StyledLink to={`/departments/${dept.slug}`}>
-                  <DepartmentCard department={dept} isChip />
-                </StyledLink>
-              </DepartmentItem>
-            ))}
-          </DepartmentsGrid>
+          {isMobile ? (
+            <div style={{ height: '300px', position: 'relative', width: '100%', display: 'flex', justifyContent: 'center' }}>
+              <Carousel items={departments} baseWidth={window.innerWidth - 32} autoplay={true} pauseOnHover={true} />
+            </div>
+          ) : (
+            <DepartmentsGrid
+              variants={gridVariants}
+              initial={shouldAnimate ? "hidden" : "show"}
+              animate="show"
+            >
+              {departments.map((dept) => (
+                <DepartmentItem key={dept.name} variants={itemVariants}>
+                  <StyledLink to={`/departments/${dept.slug}`}>
+                    <TexturedCardWrapper>
+                      <DepartmentCard department={dept} isChip />
+                    </TexturedCardWrapper>
+                  </StyledLink>
+                </DepartmentItem>
+              ))}
+            </DepartmentsGrid>
+          )}
         </>
       )}
 
@@ -219,7 +241,7 @@ const HomePage = () => {
                 animate="show"
               >
                 {filteredBooks.map((book, index) => (
-                  <motion.div key={index} variants={itemVariants}>
+                  <motion.div key={index} variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
                     <BookCard book={book} />
                   </motion.div>
                 ))}

@@ -30,7 +30,8 @@
     "loading": "বই লোড হচ্ছে...",
     "scrollDown": "নিচে স্ক্রোল করুন",
     "departments": "বিভাগসমূহ",
-    "books": "বই"
+    "books": "বই",
+    "seeAll": "সব দেখুন"
   },
   "about": {
     "university": "ইউরোপীয়ান ইউনিভার্সিটি অব বাংলাদেশ",
@@ -44,7 +45,10 @@
     "notFound": "বিভাগ পাওয়া যায়নি"
   },
   "allBooks": {
-    "title": "সকল বই"
+    "title": "সকল বই",
+    "showAvailableOnly": "শুধুমাত্র উপলব্ধ দেখান",
+    "allDepartments": "সকল বিভাগ",
+    "allAuthors": "সকল লেখক"
   },
   "authorsPage": {
     "title": "লেখক",
@@ -53,5 +57,11 @@
   },
   "misc": {
     "navigateHint": "নেভিগেট করতে ক্লিক করুন"
+  },
+  "pagination": {
+    "previous": "পূর্ববর্তী",
+    "next": "পরবর্তী",
+    "page": "পৃষ্ঠা",
+    "of": "এর"
   }
 }

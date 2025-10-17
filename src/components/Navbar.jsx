@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
-import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import SearchBar from "./SearchBar";
 import ThemeToggle from "./ThemeToggle";
+import { useAppContext } from "../context/AppContext";
 
 const Nav = styled.nav`
   position: relative;
@@ -108,26 +108,29 @@ const ControlsContainer = styled.div`
   }
 `;
 
-const LanguageSwitcher = styled.button`
-  background: none;
-  border: 1px solid ${({ theme }) => theme.text};
+const ControlButton = styled.button`
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border: none;
   color: ${({ theme }) => theme.text};
-  padding: 0.5rem;
-  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
   cursor: pointer;
   font-weight: bold;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 const Navbar = ({ isScrolled }) => {
   const location = useLocation();
-  const { t, i18n } = useTranslation();
+  const { t, i18n, toggleLanguage, isAnimationEnabled, toggleAnimation } = useAppContext();
 
   const showSearchBar = !['/about'].includes(location.pathname);
-
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'bn' : 'en';
-    i18n.changeLanguage(newLang);
-  };
 
   const navLinks = [
     { to: "/", label: t('nav.home') },
@@ -163,9 +166,12 @@ const Navbar = ({ isScrolled }) => {
         {showSearchBar && <SearchBar isScrolled={isScrolled} />}
       </NavContent>
       <ControlsContainer>
-        <LanguageSwitcher onClick={toggleLanguage}>
+        <ControlButton onClick={toggleLanguage}>
           {i18n.language === 'en' ? 'BN' : 'EN'}
-        </LanguageSwitcher>
+        </ControlButton>
+        <ControlButton onClick={toggleAnimation}>
+          {isAnimationEnabled ? "Pause" : "Play"}
+        </ControlButton>
         <ThemeToggle />
       </ControlsContainer>
     </Nav>
