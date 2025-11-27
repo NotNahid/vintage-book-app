@@ -37,18 +37,14 @@ const pulse = keyframes`
 `;
 
 const SearchContainer = styled.div`
-  width: 500px;
+  width: ${({ isMobileGlobalSearch }) => (isMobileGlobalSearch ? '100%' : '500px')};
   transition: width 0.4s ease-in-out, margin 0.4s ease-in-out;
-  margin: 2rem auto;
+  margin: ${({ isMobileGlobalSearch }) => (isMobileGlobalSearch ? '0' : '2rem auto')};
   position: relative;
 
   body.scrolled & {
-    width: 250px;
+    width: ${({ isMobileGlobalSearch }) => (isMobileGlobalSearch ? '100%' : '250px')};
     margin: 0;
-  }
-
-  @media (max-width: 768px) {
-    width: 80%;
   }
 `;
 
@@ -150,10 +146,10 @@ const ClearButton = styled.button`
 
 import { AnimatePresence, motion } from 'framer-motion';
 
-const SearchBar = () => {
-  const { searchTerms, searchInputRef, handleSearch, dropdownItems, authorSearchTerm, handleAuthorSearch, filteredAuthors, authorSearchHistory, departmentSearchTerm, handleDepartmentSearch, filteredDepartments, departmentSearchHistory, handleSearchInDepartment, filteredDepartmentBooks, handleSearchInAuthor, filteredAuthorBooks } = useAppContext();
+const SearchBar = React.forwardRef(({ isMobileGlobalSearch, ...props }, ref) => {
+  const { searchTerms, handleSearch, dropdownItems, authorSearchTerm, handleAuthorSearch, filteredAuthors, authorSearchHistory, departmentSearchTerm, handleDepartmentSearch, filteredDepartments, departmentSearchHistory, handleSearchInDepartment, filteredDepartmentBooks, handleSearchInAuthor, filteredAuthorBooks } = useAppContext();
   const location = useLocation();
-  const pathname = location.pathname;
+  const pathname = isMobileGlobalSearch ? '/books' : location.pathname;
   let searchTerm;
   if (pathname === '/authors') {
     searchTerm = authorSearchTerm;
@@ -278,7 +274,7 @@ const SearchBar = () => {
     } else {
       handleSearch("", pathname);
     }
-    searchInputRef.current?.focus();
+    ref.current?.focus();
   };
 
   const handleMicClick = () => {
@@ -352,13 +348,13 @@ const SearchBar = () => {
   };
 
   return (
-    <SearchContainer>
+    <SearchContainer isMobileGlobalSearch={isMobileGlobalSearch}>
       <SearchInputContainer>
         <SearchIcon>
           <SearchIconComponent color={theme.text} />
         </SearchIcon>
         <SearchInput
-          ref={searchInputRef}
+          ref={ref}
           placeholder={t('search.placeholder')}
           value={inputValue}
           onChange={handleInputChange}
@@ -396,6 +392,6 @@ const SearchBar = () => {
       </SearchInputContainer>
     </SearchContainer>
   );
-};
+});
 
 export default SearchBar;

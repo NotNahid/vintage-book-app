@@ -8,6 +8,30 @@ import DepartmentCard from "../components/DepartmentCard";
 import { useAppContext } from "../context/AppContext";
 import { useAnimationOnce } from "../hooks/useAnimationOnce";
 
+const TexturedCardWrapper = styled.div`
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+    opacity: 0.05;
+    pointer-events: none;
+    border-radius: 30px;
+  }
+`;
+
+const DepartmentItem = styled(motion.div)`
+  @media (max-width: 768px) {
+    flex: 0 0 110px;
+    scroll-snap-align: start;
+  }
+`;
+
 const DepartmentsPageContainer = styled.div`
   max-width: 960px;
   margin: 0 auto;
@@ -62,11 +86,13 @@ const DepartmentsPage = () => {
           animate="show"
         >
           {filteredDepartments.map((dept) => (
-            <motion.div key={dept.name} variants={itemVariants}>
+            <DepartmentItem key={dept.name} variants={itemVariants}>
               <Link to={`/departments/${dept.slug}`} style={{ textDecoration: 'none' }}>
-                <DepartmentCard department={dept} />
+                <TexturedCardWrapper>
+                  <DepartmentCard department={dept} />
+                </TexturedCardWrapper>
               </Link>
-            </motion.div>
+            </DepartmentItem>
           ))}
         </DepartmentsGrid>
       ) : (

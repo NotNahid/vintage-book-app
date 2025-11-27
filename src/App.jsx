@@ -7,7 +7,7 @@ import { AppProvider, useAppContext } from "./context/AppContext";
 import Navbar from "./components/Navbar";
 import QuickNav from "./components/QuickNav";
 import ShortcutList from "./components/ShortcutList";
-import DraggableMenu from "./components/DraggableMenu";
+import BottomNav from "./components/BottomNav";
 import ThemeToggle from "./components/ThemeToggle";
 import styled from "styled-components";
 import ScrollToTop from "./components/ScrollToTop";
@@ -44,10 +44,6 @@ const StickyContainer = styled.div`
   top: 0;
   z-index: 10;
   min-height: 160px; /* Reserve space to prevent layout shift */
-
-  @media (max-width: 768px) {
-    min-height: 80px;
-  }
 `;
 
 const light = { ...lightTheme, ...commonTheme };
@@ -146,7 +142,7 @@ function AppContent() {
 
   return (
     <>
-      <DraggableMenu />
+      <BottomNav />
       {isQuickNavOpen && <QuickNav />}
       {isShortcutListOpen && <ShortcutList setIsShortcutListOpen={setIsShortcutListOpen} />}
       <StickyContainer>

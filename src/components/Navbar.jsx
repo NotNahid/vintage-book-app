@@ -4,6 +4,7 @@ import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
 import SearchBar from "./SearchBar";
 import ThemeToggle from "./ThemeToggle";
+import MobileHeader from "./MobileHeader";
 import { useAppContext } from "../context/AppContext";
 
 const Nav = styled.nav`
@@ -19,7 +20,7 @@ const Nav = styled.nav`
   /* User preference: Do not show a background or shadow on the header when scrolling. */
 
   @media (max-width: 768px) {
-    padding: 0.5rem;
+    padding: 0;
     height: auto;
     width: 100%;
   }
@@ -126,6 +127,18 @@ const ControlButton = styled.button`
   }
 `;
 
+const DesktopOnly = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileOnly = styled.div`
+  @media (min-width: 769px) {
+    display: none;
+  }
+`;
+
 const Navbar = ({ isScrolled }) => {
   const location = useLocation();
   const { t, i18n, toggleLanguage, isAnimationEnabled, toggleAnimation } = useAppContext();
@@ -142,38 +155,43 @@ const Navbar = ({ isScrolled }) => {
 
   return (
     <Nav>
-      <NavContent>
-        <DesktopNavLinks>
-          {navLinks.map(link => (
-            <NavLink key={link.to} to={link.to}>
-              {({ isActive }) => (
-                <>
-                  {isActive && (
-                    <DotIndicator
-                      layoutId="dot-indicator"
-                      variants={dotVariants}
-                      initial="initial"
-                      animate={isActive ? "animate" : "initial"}
-                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                    />
-                  )}
-                  {link.label}
-                </>
-              )}
-            </NavLink>
-          ))}
-        </DesktopNavLinks>
-        {showSearchBar && <SearchBar isScrolled={isScrolled} />}
-      </NavContent>
-      <ControlsContainer>
-        <ControlButton onClick={toggleLanguage}>
-          {i18n.language === 'en' ? 'BN' : 'EN'}
-        </ControlButton>
-        <ControlButton onClick={toggleAnimation}>
-          {isAnimationEnabled ? "Pause" : "Play"}
-        </ControlButton>
-        <ThemeToggle />
-      </ControlsContainer>
+      <MobileOnly>
+        <MobileHeader isScrolled={isScrolled} />
+      </MobileOnly>
+      <DesktopOnly>
+        <NavContent>
+          <DesktopNavLinks>
+            {navLinks.map(link => (
+              <NavLink key={link.to} to={link.to}>
+                {({ isActive }) => (
+                  <>
+                    {isActive && (
+                      <DotIndicator
+                        layoutId="dot-indicator"
+                        variants={dotVariants}
+                        initial="initial"
+                        animate={isActive ? "animate" : "initial"}
+                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      />
+                    )}
+                    {link.label}
+                  </>
+                )}
+              </NavLink>
+            ))}
+          </DesktopNavLinks>
+          {showSearchBar && <SearchBar isScrolled={isScrolled} />}
+        </NavContent>
+        <ControlsContainer>
+          <ControlButton onClick={toggleLanguage}>
+            {i18n.language === 'en' ? 'BN' : 'EN'}
+          </ControlButton>
+          <ControlButton onClick={toggleAnimation}>
+            {isAnimationEnabled ? "Pause" : "Play"}
+          </ControlButton>
+          <ThemeToggle />
+        </ControlsContainer>
+      </DesktopOnly>
     </Nav>
   );
 };

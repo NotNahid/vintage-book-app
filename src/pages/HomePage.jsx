@@ -8,6 +8,10 @@ import { useAppContext } from "../context/AppContext";
 import DepartmentCard from "../components/DepartmentCard";
 import BookCard from "../components/BookCard";
 import Carousel from "../components/Carousel";
+import DiscoverCategories from "../components/DiscoverCategories";
+import RecentlyAddedBooks from "../components/RecentlyAddedBooks";
+import SkeletonLoader from "../components/SkeletonLoader";
+import MobileSearchResults from "../components/MobileSearchResults";
 import { useAnimationOnce } from "../hooks/useAnimationOnce";
 import { useIsMobile } from "../hooks/useIsMobile";
 
@@ -34,7 +38,7 @@ const HomePageContainer = styled.div`
   padding: 2rem;
 
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: 1.5rem;
   }
 `;
 
@@ -168,6 +172,10 @@ const SectionTitle = styled.h2`
   color: ${({ theme }) => theme.text};
 `;
 
+const Section = styled.section`
+  margin-bottom: 2rem;
+`;
+
 const HomePage = () => {
   const { searchTerms, filteredBooks, loading, error } = useAppContext();
   const location = useLocation();
@@ -194,68 +202,95 @@ const HomePage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [showScrollIndicator]);
 
+  if (loading) {
+    return (
+      <HomePageContainer>
+        <SkeletonLoader />
+      </HomePageContainer>
+    );
+  }
+
   return (
     <HomePageContainer>
-      {searchTerm.trim() === '' && (
+      {isMobile ? (
         <>
-          <SectionHeader>
-            <SectionTitle>{t('home.departments')}</SectionTitle>
-            <SeeAllLink to="/departments">{t('home.seeAll')}</SeeAllLink>
-          </SectionHeader>
-          {isMobile ? (
-            <div style={{ height: '300px', position: 'relative', width: '100%', display: 'flex', justifyContent: 'center' }}>
-              <Carousel items={departments} baseWidth={window.innerWidth - 32} autoplay={true} pauseOnHover={true} />
-            </div>
+          {searchTerm.trim() === '' ? (
+            <>
+              <Section>
+                <SectionHeader>
+                  <SectionTitle>{t('home.discover')}</SectionTitle>
+                </SectionHeader>
+                <DiscoverCategories />
+              </Section>
+              <Section>
+                <SectionHeader>
+                  <SectionTitle>{t('home.recentlyAdded')}</SectionTitle>
+                  <SeeAllLink to="/books">{t('home.seeAll')}</SeeAllLink>
+                </SectionHeader>
+                <RecentlyAddedBooks />
+              </Section>
+            </>
           ) : (
-            <DepartmentsGrid
-              variants={gridVariants}
-              initial={shouldAnimate ? "hidden" : "show"}
-              animate="show"
-            >
-              {departments.map((dept) => (
-                <DepartmentItem key={dept.name} variants={itemVariants}>
-                  <StyledLink to={`/departments/${dept.slug}`}>
-                    <TexturedCardWrapper>
-                      <DepartmentCard department={dept} isChip />
-                    </TexturedCardWrapper>
-                  </StyledLink>
-                </DepartmentItem>
-              ))}
-            </DepartmentsGrid>
+            <MobileSearchResults />
           )}
         </>
-      )}
-
-      {loading && <p>{t('home.loading')}</p>}
-      {error && <p>{error}</p>}
-      {!loading && !error && (
+      ) : (
         <>
-          {filteredBooks.length > 0 ? (
+          {searchTerm.trim() === '' && (
             <>
               <SectionHeader>
-                <SectionTitle>{t('home.books')}</SectionTitle>
+                <SectionTitle>{t('home.departments')}</SectionTitle>
+                <SeeAllLink to="/departments">{t('home.seeAll')}</SeeAllLink>
               </SectionHeader>
-              <BooksGrid
+              <DepartmentsGrid
                 variants={gridVariants}
                 initial={shouldAnimate ? "hidden" : "show"}
                 animate="show"
               >
-                {filteredBooks.map((book, index) => (
-                  <motion.div key={index} variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-                    <BookCard book={book} />
-                  </motion.div>
+                {departments.map((dept) => (
+                  <DepartmentItem key={dept.name} variants={itemVariants}>
+                    <StyledLink to={`/departments/${dept.slug}`}>
+                      <TexturedCardWrapper>
+                        <DepartmentCard department={dept} isChip />
+                      </TexturedCardWrapper>
+                    </StyledLink>
+                  </DepartmentItem>
                 ))}
-              </BooksGrid>
+              </DepartmentsGrid>
             </>
-          ) : (
-            searchTerm.trim() !== '' && <NoResults>{t('search.noResults')}</NoResults>
           )}
+
+          {error && <p>{error}</p>}
+          {!loading && !error && (
+            <>
+              {filteredBooks.length > 0 ? (
+                <>
+                  <SectionHeader>
+                    <SectionTitle>{t('home.books')}</SectionTitle>
+                  </SectionHeader>
+                  <BooksGrid
+                    variants={gridVariants}
+                    initial={shouldAnimate ? "hidden" : "show"}
+                    animate="show"
+                  >
+                    {filteredBooks.map((book, index) => (
+                      <motion.div key={index} variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+                        <BookCard book={book} />
+                      </motion.div>
+                    ))}
+                  </BooksGrid>
+                </>
+              ) : (
+                searchTerm.trim() !== '' && <NoResults>{t('search.noResults')}</NoResults>
+              )}
+            </>
+          )}
+          <ScrollIndicator $isVisible={showScrollIndicator}>
+            <span>{t('home.scrollDown')}</span>
+            <ChevronIcon />
+          </ScrollIndicator>
         </>
       )}
-      <ScrollIndicator $isVisible={showScrollIndicator}>
-        <span>{t('home.scrollDown')}</span>
-        <ChevronIcon />
-      </ScrollIndicator>
     </HomePageContainer>
   );
 };

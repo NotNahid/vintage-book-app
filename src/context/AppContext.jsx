@@ -171,7 +171,6 @@ export const AppProvider = ({ children }) => {
     }
   }, [debouncedDepartmentSearchTerm]);
 
-  const searchInputRef = useRef(null);
   const [authorShortcut, setAuthorShortcut] = useState(null);
 
   const addSearchToHistory = useCallback((term, books) => {
@@ -346,7 +345,6 @@ export const AppProvider = ({ children }) => {
   const value = {
     searchTerms,
     handleSearch,
-    searchInputRef,
     isQuickNavOpen,
     setIsQuickNavOpen,
     theme,
