@@ -1,8 +1,27 @@
-# Personal Portfolio & Digital Bookshelf
+<div align="center">
+  <h1>
+    Personal Portfolio & Digital Bookshelf
+  </h1>
+  <p>
+    A personal portfolio website designed as a virtual bookshelf, built with React and a Node.js backend for the contact form.
+  </p>
+  
+  <p>
+    <a href="https://github.com/NotNahid/Nahid/blob/master/LICENSE">
+      <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT">
+    </a>
+    <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React">
+    <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js">
+    <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+    <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
+  </p>
+</div>
+
+---
 
 This is a personal portfolio website designed as a virtual bookshelf. It showcases projects, writings, and other creative works in a unique and engaging way. The site is built with React and features a Node.js backend that integrates with Google Sheets to capture contact form submissions.
 
-## Features
+## ✨ Features
 
 - **Interactive Bookshelf UI:** Projects are displayed as books on a shelf, with unique designs and hover effects.
 - **Project Modal:** Clicking a book opens a modal with detailed information about the project.
@@ -10,7 +29,9 @@ This is a personal portfolio website designed as a virtual bookshelf. It showcas
 - **Responsive Design:** The site is designed to work well on all screen sizes, from mobile to desktop.
 - **Backend API:** A simple Node.js/Express backend to handle the Google Sheets integration.
 
-## Tech Stack
+---
+
+## 🛠️ Tech Stack
 
 - **Frontend:**
   - React
@@ -24,7 +45,9 @@ This is a personal portfolio website designed as a virtual bookshelf. It showcas
   - Express.js
   - Google Sheets API (`googleapis`)
 
-## Getting Started
+---
+
+## 🚀 Getting Started
 
 Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
@@ -89,7 +112,9 @@ To run the application, you need to have both the frontend and backend servers r
 
 The application should now be running in your browser. The contact form will send data to your local backend, which will then update your Google Sheet.
 
-## Deployment
+---
+
+## ☁️ Deployment
 
 To deploy this project, you need to host the frontend and the backend separately.
 
@@ -100,7 +125,3 @@ To deploy this project, you need to host the frontend and the backend separately
 - **Backend (Node.js/Express):**
   - Deploy the `api` directory to a Node.js hosting provider like [Heroku](https://www.heroku.com/), [Render](https://render.com/), or as a serverless function on Vercel/Netlify.
   - **Important:** When deploying the backend, you cannot use the `credentials.json` file directly. You must copy the contents of the file and set them as an environment variable (e.g., `GOOGLE_CREDENTIALS`) on your hosting platform. The backend code would then need to be updated to parse this environment variable instead of reading the file.
-
----
-
-This README provides a comprehensive guide for anyone looking to understand, run, or contribute to the project.
