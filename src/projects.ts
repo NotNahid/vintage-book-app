@@ -1,0 +1,898 @@
+export interface Project {
+  id: number;
+  title: string;
+  description: string;
+  technologies: string[];
+  image?: string;
+  liveUrl?: string;
+  sourceUrl?: string;
+  book: {
+    color: string;
+    height: string;
+    width: string;
+    tilted?: 'left' | 'right';
+    special?: 'band-1' | 'band-2'; // For books with decorative bands
+  };
+}
+
+export const projects: Project[] = [
+  {
+    "id": 1023042249,
+    "title": "APP",
+    "description": "A project from my GitHub.",
+    "technologies": [],
+    "image": "https://picsum.photos/seed/1023042249/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/APP",
+    "book": {
+      "color": "#5C839A",
+      "height": "83%",
+      "width": "28px",
+      "tilted": null,
+      "special": "band-1"
+    }
+  },
+  {
+    "id": 1025976295,
+    "title": "ditto-zdb-extractor",
+    "description": "A project from my GitHub.",
+    "technologies": [
+      "Python"
+    ],
+    "image": "https://picsum.photos/seed/1025976295/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/ditto-zdb-extractor",
+    "book": {
+      "color": "#E6D6C1",
+      "height": "70%",
+      "width": "22px",
+      "tilted": null,
+      "special": "band-1"
+    }
+  },
+  {
+    "id": 1013081220,
+    "title": "EUB",
+    "description": "A project from my GitHub.",
+    "technologies": [
+      "HTML"
+    ],
+    "image": "https://picsum.photos/seed/1013081220/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/EUB",
+    "book": {
+      "color": "#D97C4B",
+      "height": "75%",
+      "width": "31px",
+      "tilted": "left",
+      "special": null
+    }
+  },
+  {
+    "id": 1057981020,
+    "title": "finest-touch-interior-v3",
+    "description": "A project from my GitHub.",
+    "technologies": [
+      "HTML"
+    ],
+    "image": "https://picsum.photos/seed/1057981020/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/finest-touch-interior-v3",
+    "book": {
+      "color": "#D97C4B",
+      "height": "92%",
+      "width": "26px",
+      "tilted": null,
+      "special": "band-1"
+    }
+  },
+  {
+    "id": 1057997080,
+    "title": "fti",
+    "description": "A project from my GitHub.",
+    "technologies": [
+      "HTML"
+    ],
+    "image": "https://picsum.photos/seed/1057997080/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/fti",
+    "book": {
+      "color": "#5C839A",
+      "height": "79%",
+      "width": "29px",
+      "tilted": null,
+      "special": "band-1"
+    }
+  },
+  {
+    "id": 1059428258,
+    "title": "ftiv1",
+    "description": "A project from my GitHub.",
+    "technologies": [
+      "JavaScript"
+    ],
+    "image": "https://picsum.photos/seed/1059428258/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/ftiv1",
+    "book": {
+      "color": "#E6D6C1",
+      "height": "70%",
+      "width": "30px",
+      "tilted": "left",
+      "special": "band-1"
+    }
+  },
+  {
+    "id": 1058711418,
+    "title": "ga",
+    "description": "A project from my GitHub.",
+    "technologies": [
+      "HTML"
+    ],
+    "image": "https://picsum.photos/seed/1058711418/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/ga",
+    "book": {
+      "color": "#E6D6C1",
+      "height": "91%",
+      "width": "25px",
+      "tilted": "right",
+      "special": null
+    }
+  },
+  {
+    "id": 1055791726,
+    "title": "li",
+    "description": "A project from my GitHub.",
+    "technologies": [
+      "HTML"
+    ],
+    "image": "https://picsum.photos/seed/1055791726/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/li",
+    "book": {
+      "color": "#D97C4B",
+      "height": "75%",
+      "width": "29px",
+      "tilted": "right",
+      "special": "band-2"
+    }
+  },
+  {
+    "id": 1040597427,
+    "title": "library",
+    "description": "A project from my GitHub.",
+    "technologies": [
+      "HTML"
+    ],
+    "image": "https://picsum.photos/seed/1040597427/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/library",
+    "book": {
+      "color": "#E8B85A",
+      "height": "97%",
+      "width": "29px",
+      "tilted": null,
+      "special": "band-2"
+    }
+  },
+  {
+    "id": 1055783691,
+    "title": "library-new",
+    "description": "A project from my GitHub.",
+    "technologies": [
+      "HTML"
+    ],
+    "image": "https://picsum.photos/seed/1055783691/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/library-new",
+    "book": {
+      "color": "#5C839A",
+      "height": "96%",
+      "width": "31px",
+      "tilted": "left",
+      "special": "band-2"
+    }
+  },
+  {
+    "id": 1056566383,
+    "title": "litnew",
+    "description": "A project from my GitHub.",
+    "technologies": [
+      "HTML"
+    ],
+    "image": "https://picsum.photos/seed/1056566383/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/litnew",
+    "book": {
+      "color": "#A2674F",
+      "height": "83%",
+      "width": "20px",
+      "tilted": "right",
+      "special": null
+    }
+  },
+  {
+    "id": 1056964796,
+    "title": "n",
+    "description": "A project from my GitHub.",
+    "technologies": [
+      "HTML"
+    ],
+    "image": "https://picsum.photos/seed/1056964796/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/n",
+    "book": {
+      "color": "#5C839A",
+      "height": "82%",
+      "width": "23px",
+      "tilted": "right",
+      "special": "band-1"
+    }
+  },
+  {
+    "id": 1052603038,
+    "title": "n8n-Website-Chatbot-Javascript",
+    "description": "A project from my GitHub.",
+    "technologies": [],
+    "image": "https://picsum.photos/seed/1052603038/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/n8n-Website-Chatbot-Javascript",
+    "book": {
+      "color": "#A2674F",
+      "height": "86%",
+      "width": "31px",
+      "tilted": "right",
+      "special": "band-1"
+    }
+  },
+  {
+    "id": 1056786577,
+    "title": "neb",
+    "description": "A project from my GitHub.",
+    "technologies": [
+      "HTML"
+    ],
+    "image": "https://picsum.photos/seed/1056786577/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/neb",
+    "book": {
+      "color": "#D97C4B",
+      "height": "84%",
+      "width": "28px",
+      "tilted": null,
+      "special": "band-2"
+    }
+  },
+  {
+    "id": 1030148857,
+    "title": "pdf-sonyplus",
+    "description": "A project from my GitHub.",
+    "technologies": [],
+    "image": "https://picsum.photos/seed/1030148857/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/pdf-sonyplus",
+    "book": {
+      "color": "#A2674F",
+      "height": "82%",
+      "width": "25px",
+      "tilted": "left",
+      "special": null
+    }
+  },
+  {
+    "id": 1014686678,
+    "title": "prescription",
+    "description": "A project from my GitHub.",
+    "technologies": [
+      "HTML"
+    ],
+    "image": "https://picsum.photos/seed/1014686678/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/prescription",
+    "book": {
+      "color": "#A2674F",
+      "height": "93%",
+      "width": "32px",
+      "tilted": "left",
+      "special": "band-1"
+    }
+  },
+  {
+    "id": 1036498277,
+    "title": "Transcription",
+    "description": "This is an code that can transcript audio file no matter how big the file is",
+    "technologies": [
+      "Python"
+    ],
+    "image": "https://picsum.photos/seed/1036498277/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/Transcription",
+    "book": {
+      "color": "#5C839A",
+      "height": "96%",
+      "width": "28px",
+      "tilted": "left",
+      "special": null
+    }
+  },
+  {
+    "id": 1013867980,
+    "title": "typing",
+    "description": "A project from my GitHub.",
+    "technologies": [
+      "HTML"
+    ],
+    "image": "https://picsum.photos/seed/1013867980/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/typing",
+    "book": {
+      "color": "#E6D6C1",
+      "height": "70%",
+      "width": "26px",
+      "tilted": null,
+      "special": null
+    }
+  },
+  {
+    "id": 1027524453,
+    "title": "typing-pro",
+    "description": "A project from my GitHub.",
+    "technologies": [
+      "HTML"
+    ],
+    "image": "https://picsum.photos/seed/1027524453/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/typing-pro",
+    "book": {
+      "color": "#E8B85A",
+      "height": "83%",
+      "width": "25px",
+      "tilted": null,
+      "special": null
+    }
+  },
+  {
+    "id": 1036701630,
+    "title": "whisper",
+    "description": "Robust Speech Recognition via Large-Scale Weak Supervision",
+    "technologies": [],
+    "image": "https://picsum.photos/seed/1036701630/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/NotNahid/whisper",
+    "book": {
+      "color": "#E6D6C1",
+      "height": "94%",
+      "width": "23px",
+      "tilted": null,
+      "special": "band-2"
+    }
+  },
+  {
+    "id": 21,
+    "title": "AI Ethics Essay",
+    "description": "A deep dive into the ethical implications of modern artificial intelligence. This essay explores bias in machine learning models, the future of autonomous decision-making, and the need for a human-centric approach to AI development. The content is long to demonstrate the book-like scrolling effect.",
+    "technologies": [
+      "Research",
+      "Writing",
+      "Philosophy"
+    ],
+    "image": "https://picsum.photos/seed/project1/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/notnahid",
+    "book": {
+      "color": "#D97C4B",
+      "height": "88%",
+      "width": "28px"
+    }
+  },
+  {
+    "id": 22,
+    "title": "React Project Showcase",
+    "description": "A collection of interactive web applications built with React. This showcase demonstrates proficiency in component-based architecture, state management with Redux, and modern frontend development practices. Each project is a testament to clean code and intuitive user experiences.",
+    "technologies": [
+      "React",
+      "Redux",
+      "TypeScript"
+    ],
+    "image": "https://picsum.photos/seed/project2/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/notnahid",
+    "book": {
+      "color": "#5C839A",
+      "height": "95%",
+      "width": "32px"
+    }
+  },
+  {
+    "id": 23,
+    "title": "Abstract Photography",
+    "description": "A curated collection of abstract photography that explores the interplay of light, shadow, and texture. Each piece aims to evoke emotion and challenge the viewer's perception of the ordinary. All photos were shot on a vintage 35mm camera.",
+    "technologies": [
+      "Photography",
+      "Lightroom",
+      "35mm Film"
+    ],
+    "image": "https://picsum.photos/seed/project3/800/400",
+    "liveUrl": "#",
+    "sourceUrl": "https://github.com/notnahid",
+    "book": {
+      "color": "#A2674F",
+      "height": "80%",
+      "width": "26px",
+      "tilted": "left"
+    }
+  },
+  {
+    "id": 24,
+    "title": "Data Visualization",
+    "description": "Interactive charts and graphs representing complex datasets, built with D3.js. This project turns raw numbers into compelling visual stories, covering topics from economic trends to climate change data.",
+    "technologies": [
+      "D3.js",
+      "JavaScript",
+      "Data Analysis"
+    ],
+    "book": {
+      "color": "#E8B85A",
+      "height": "92%",
+      "width": "24px"
+    }
+  },
+  {
+    "id": 25,
+    "title": "Personal Blog",
+    "description": "A statically generated blog built with Astro and MDX, focusing on tech tutorials, travel diaries, and creative writing. The design is minimalist, focusing on readability and performance.",
+    "technologies": [
+      "Astro",
+      "MDX",
+      "Content Creation"
+    ],
+    "book": {
+      "color": "#E6D6C1",
+      "height": "85%",
+      "width": "20px",
+      "special": "band-1"
+    }
+  },
+  {
+    "id": 26,
+    "title": "E-commerce Platform",
+    "description": "A full-stack e-commerce website featuring product listings, a shopping cart, and a checkout process, built with the MERN stack.",
+    "technologies": [
+      "MongoDB",
+      "Express",
+      "React",
+      "Node.js"
+    ],
+    "book": {
+      "color": "#D97C4B",
+      "height": "98%",
+      "width": "30px"
+    }
+  },
+  {
+    "id": 27,
+    "title": "GraphQL API",
+    "description": "A powerful and flexible API for a mobile application, built with Apollo Server and GraphQL. It provides a single endpoint for all data-fetching needs.",
+    "technologies": [
+      "GraphQL",
+      "Apollo",
+      "Node.js"
+    ],
+    "book": {
+      "color": "#5C839A",
+      "height": "82%",
+      "width": "28px"
+    }
+  },
+  {
+    "id": 28,
+    "title": "Creative Coding Sketches",
+    "description": "A collection of generative art pieces and creative coding experiments made with p5.js.",
+    "technologies": [
+      "p5.js",
+      "Generative Art"
+    ],
+    "book": {
+      "color": "#E8B85A",
+      "height": "70%",
+      "width": "22px"
+    }
+  },
+  {
+    "id": 29,
+    "title": "UI/UX Case Study",
+    "description": "A complete UI/UX design process for a fictional mobile app, from user research and wireframing to high-fidelity prototypes in Figma.",
+    "technologies": [
+      "Figma",
+      "UI/UX Design"
+    ],
+    "book": {
+      "color": "#A2674F",
+      "height": "94%",
+      "width": "30px",
+      "special": "band-2"
+    }
+  },
+  {
+    "id": 30,
+    "title": "Python Automation Scripts",
+    "description": "A series of Python scripts to automate daily tasks, such as file organization, data scraping, and sending automated emails.",
+    "technologies": [
+      "Python",
+      "Automation"
+    ],
+    "book": {
+      "color": "#5C839A",
+      "height": "80%",
+      "width": "26px"
+    }
+  },
+  {
+    "id": 31,
+    "title": "Three.js Experiments",
+    "description": "Exploring the world of 3D on the web with Three.js, creating interactive scenes and animations.",
+    "technologies": [
+      "Three.js",
+      "WebGL"
+    ],
+    "book": {
+      "color": "#E6D6C1",
+      "height": "96%",
+      "width": "30px",
+      "tilted": "right"
+    }
+  },
+  {
+    "id": 32,
+    "title": "Poetry Collection",
+    "description": "A small book of personal poems written over the last five years, exploring themes of nature and introspection.",
+    "technologies": [
+      "Creative Writing"
+    ],
+    "book": {
+      "color": "#D97C4B",
+      "height": "78%",
+      "width": "28px"
+    }
+  },
+  {
+    "id": 33,
+    "title": "Vue.js Weather App",
+    "description": "A simple and elegant weather application built with Vue.js, using a third-party weather API to fetch real-time data.",
+    "technologies": [
+      "Vue.js",
+      "API Integration"
+    ],
+    "book": {
+      "color": "#5C839A",
+      "height": "88%",
+      "width": "24px"
+    }
+  },
+  {
+    "id": 34,
+    "title": "Brand Identity Guide",
+    "description": "A complete branding package for a local business, including logo design, color palette, and typography guidelines.",
+    "technologies": [
+      "Branding",
+      "Illustrator"
+    ],
+    "book": {
+      "color": "#E8B85A",
+      "height": "94%",
+      "width": "32px"
+    }
+  },
+  {
+    "id": 35,
+    "title": "Short Film Screenplay",
+    "description": "A 15-page screenplay for a short drama, formatted to industry standards.",
+    "technologies": [
+      "Screenwriting"
+    ],
+    "book": {
+      "color": "#D97C4B",
+      "height": "84%",
+      "width": "20px"
+    }
+  },
+  {
+    "id": 36,
+    "title": "Minimalist Poster Designs",
+    "description": "A series of minimalist movie posters designed with a focus on typography and negative space.",
+    "technologies": [
+      "Graphic Design",
+      "Photoshop"
+    ],
+    "book": {
+      "color": "#E6D6C1",
+      "height": "72%",
+      "width": "26px"
+    }
+  },
+  {
+    "id": 37,
+    "title": "Svelte To-Do App",
+    "description": "A classic to-do list application built with Svelte, showcasing its simplicity and reactivity.",
+    "technologies": [
+      "Svelte"
+    ],
+    "book": {
+      "color": "#5C839A",
+      "height": "90%",
+      "width": "28px",
+      "tilted": "left"
+    }
+  },
+  {
+    "id": 38,
+    "title": "Travel Photography Journal",
+    "description": "A photo-journal from a trip across Southeast Asia, combining photography with short-form travel writing.",
+    "technologies": [
+      "Photography",
+      "Writing"
+    ],
+    "book": {
+      "color": "#A2674F",
+      "height": "85%",
+      "width": "24px"
+    }
+  },
+  {
+    "id": 39,
+    "title": "Next.js Portfolio",
+    "description": "A previous version of this portfolio, built with Next.js and server-side rendering.",
+    "technologies": [
+      "Next.js",
+      "React"
+    ],
+    "book": {
+      "color": "#E8B85A",
+      "height": "95%",
+      "width": "30px"
+    }
+  },
+  {
+    "id": 40,
+    "title": "Cooking Recipe Collection",
+    "description": "A personal collection of favorite recipes, formatted and designed like a small cookbook.",
+    "technologies": [
+      "Cooking",
+      "Design"
+    ],
+    "book": {
+      "color": "#D97C4B",
+      "height": "80%",
+      "width": "28px"
+    }
+  },
+  {
+    "id": 41,
+    "title": "Unity Game Prototype",
+    "description": "A prototype for a 2D platformer game developed in Unity with custom C# scripts.",
+    "technologies": [
+      "Unity",
+      "C#",
+      "Game Dev"
+    ],
+    "book": {
+      "color": "#E6D6C1",
+      "height": "92%",
+      "width": "32px"
+    }
+  },
+  {
+    "id": 42,
+    "title": "Machine Learning Model",
+    "description": "A Python-based machine learning model trained to predict housing prices based on a public dataset.",
+    "technologies": [
+      "Python",
+      "Scikit-learn"
+    ],
+    "book": {
+      "color": "#5C839A",
+      "height": "90%",
+      "width": "28px"
+    }
+  },
+  {
+    "id": 43,
+    "title": "iOS App Concept",
+    "description": "A design and prototype for an iOS mindfulness app, created using Swift and SwiftUI.",
+    "technologies": [
+      "SwiftUI",
+      "iOS Dev"
+    ],
+    "book": {
+      "color": "#D97C4B",
+      "height": "80%",
+      "width": "30px"
+    }
+  },
+  {
+    "id": 44,
+    "title": "Angular Dashboard",
+    "description": "A data dashboard for an enterprise application, built with Angular and TypeScript.",
+    "technologies": [
+      "Angular",
+      "TypeScript"
+    ],
+    "book": {
+      "color": "#E8B85A",
+      "height": "98%",
+      "width": "26px",
+      "tilted": "left"
+    }
+  },
+  {
+    "id": 45,
+    "title": "Figma Plugin",
+    "description": "A custom plugin for Figma to automate the creation of design system components.",
+    "technologies": [
+      "Figma Plugins",
+      "TypeScript"
+    ],
+    "book": {
+      "color": "#E6D6C1",
+      "height": "75%",
+      "width": "32px"
+    }
+  },
+  {
+    "id": 46,
+    "title": "Woodworking Projects",
+    "description": "A gallery of handcrafted woodworking projects, from small boxes to custom furniture.",
+    "technologies": [
+      "Woodworking",
+      "Craft"
+    ],
+    "book": {
+      "color": "#A2674F",
+      "height": "88%",
+      "width": "24px"
+    }
+  },
+  {
+    "id": 47,
+    "title": "Gatsby Blog",
+    "description": "A blazing-fast blog built with Gatsby.js and sourced from Markdown files.",
+    "technologies": [
+      "Gatsby",
+      "React",
+      "GraphQL"
+    ],
+    "book": {
+      "color": "#E8B85A",
+      "height": "95%",
+      "width": "30px"
+    }
+  },
+  {
+    "id": 48,
+    "title": "REST API with Go",
+    "description": "A high-performance REST API built with Go (Golang) for a microservices architecture.",
+    "technologies": [
+      "Go",
+      "REST API"
+    ],
+    "book": {
+      "color": "#5C839A",
+      "height": "85%",
+      "width": "28px"
+    }
+  },
+  {
+    "id": 49,
+    "title": "Elm Web App",
+    "description": "An exploration of functional programming on the frontend with Elm, creating a small, reliable web application.",
+    "technologies": [
+      "Elm",
+      "Functional Programming"
+    ],
+    "book": {
+      "color": "#D97C4B",
+      "height": "92%",
+      "width": "24px",
+      "tilted": "right"
+    }
+  },
+  {
+    "id": 50,
+    "title": "Custom Webpack Config",
+    "description": "A deep dive into webpack, creating a custom configuration from scratch for a React project.",
+    "technologies": [
+      "Webpack",
+      "Babel"
+    ],
+    "book": {
+      "color": "#E6D6C1",
+      "height": "78%",
+      "width": "30px"
+    }
+  },
+  {
+    "id": 51,
+    "title": "Docker Deployment",
+    "description": "A guide to containerizing a full-stack web application with Docker and deploying it to a cloud service.",
+    "technologies": [
+      "Docker",
+      "DevOps"
+    ],
+    "book": {
+      "color": "#5C839A",
+      "height": "96%",
+      "width": "32px"
+    }
+  },
+  {
+    "id": 52,
+    "title": "Music Composition Portfolio",
+    "description": "A collection of original music compositions for film and games.",
+    "technologies": [
+      "Music",
+      "Composition"
+    ],
+    "book": {
+      "color": "#E8B85A",
+      "height": "82%",
+      "width": "22px"
+    }
+  },
+  {
+    "id": 53,
+    "title": "CSS Art Gallery",
+    "description": "A series of illustrations created using only CSS and HTML, pushing the boundaries of what CSS can do.",
+    "technologies": [
+      "CSS",
+      "HTML"
+    ],
+    "book": {
+      "color": "#A2674F",
+      "height": "89%",
+      "width": "28px"
+    }
+  },
+  {
+    "id": 54,
+    "title": "Home Server Setup",
+    "description": "A tutorial on setting up a home server for file storage, media streaming, and personal project hosting.",
+    "technologies": [
+      "Linux",
+      "Networking"
+    ],
+    "book": {
+      "color": "#E6D6C1",
+      "height": "70%",
+      "width": "26px"
+    }
+  },
+  {
+    "id": 55,
+    "title": "Ruby on Rails App",
+    "description": "A classic monolithic web application built with Ruby on Rails, focusing on rapid development.",
+    "technologies": [
+      "Ruby on Rails",
+      "Ruby"
+    ],
+    "book": {
+      "color": "#D97C4B",
+      "height": "93%",
+      "width": "30px"
+    }
+  },
+  {
+    "id": 56,
+    "title": "Community Volunteer Work",
+    "description": "A summary of volunteer work with local non-profits, focusing on teaching code to beginners.",
+    "technologies": [
+      "Community",
+      "Teaching"
+    ],
+    "book": {
+      "color": "#5C839A",
+      "height": "83%",
+      "width": "28px"
+    }
+  }
+];

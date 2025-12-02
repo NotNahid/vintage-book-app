@@ -1,0 +1,387 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@400;500&display=swap');
+
+/* Custom styles from the original HTML */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #FBF9F3;
+    color: #5D503C;
+}
+.font-playfair {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Bookshelf container shadow to simulate depth against the wall */
+.bookshelf-shadow {
+    filter: drop-shadow(45px 45px 25px rgba(0,0,0,0.18)) drop-shadow(8px 8px 8px rgba(0,0,0,0.08));
+}
+
+/* Individual book styling */
+.book {
+    position: relative;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 
+        inset 5px 0 10px rgba(0,0,0,0.2),
+        3px 0 5px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease-in-out;
+    background-image: 
+        linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, rgba(0,0,0,0.15) 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath d='M1 3h1v1H1V3zm2-2h1v1H3V1z' fill='%23000' fill-opacity='0.05'/%3E%3C/svg%3E");
+    background-blend-mode: multiply;
+}
+
+.book:hover {
+    transform: translateY(-8px);
+}
+
+.book-tilted-left {
+    transform: rotate(-3deg);
+    margin-bottom: 2px;
+}
+
+.book-tilted-right {
+    transform: rotate(2deg);
+    margin-bottom: 1px;
+}
+
+/* Shelf styling */
+.shelf {
+    background-color: #C6A889;
+    box-shadow: 
+        0 6px 12px rgba(0,0,0,0.25),
+        inset 0 2px 4px rgba(0,0,0,0.15);
+    height: 14px;
+    border-radius: 3px;
+}
+
+/* Custom hover label for books */
+.book-hover-label {
+  position: absolute;
+  bottom: 105%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+  z-index: 10;
+}
+
+.book:hover .book-hover-label {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- V2 Desk Accessories --- */
+.potted-plant, .picture-frame { /* Shared properties for accessories */
+  align-self: flex-end;
+  margin: 0 10px;
+}
+
+.potted-plant {
+  width: 50px;
+  height: 70px;
+  position: relative;
+}
+
+.pot {
+  width: 40px;
+  height: 40px;
+  background-color: #A2674F;
+  border-radius: 0 0 15px 15px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: inset 0 -2px 4px rgba(0,0,0,0.2);
+}
+
+.plant-stem {
+  width: 4px;
+  height: 20px;
+  background-color: #5D503C;
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.plant-leaf {
+  width: 20px;
+  height: 20px;
+  background-color: #5C839A;
+  border-radius: 50% 0;
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform-origin: bottom left;
+}
+
+.picture-frame {
+  width: 80px;
+  height: 100px;
+  background-color: #212529;
+  border: 4px solid #E6D6C1;
+  padding: 5px;
+  transform: rotate(5deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.frame-inner {
+  width: 100%;
+  height: 100%;
+  background-color: #5A452C;
+  opacity: 0.5;
+}
+
+/* --- Open Book Modal --- */
+.book-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+.book-modal-overlay.active {
+  opacity: 1;
+}
+
+.book-container-3d {
+  perspective: 2500px;
+}
+
+.book-model {
+  width: 90vw;
+  max-width: 1000px;
+  height: 60vh;
+  max-height: 600px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-30deg);
+  transition: transform 1s ease-in-out;
+}
+
+.book-modal-overlay.active .book-model {
+  transform: rotateY(0deg);
+}
+
+.book-page, .book-cover {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  background-color: #FBF9F3;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.book-cover {
+  left: 0;
+  transform-origin: left;
+  transform: rotateY(0deg);
+  transition: transform 1s ease-in-out 0.3s;
+  border-radius: 0 10px 10px 0;
+}
+
+.book-modal-overlay.active .book-cover {
+  transform: rotateY(-170deg);
+}
+
+.book-page {
+  left: 50%;
+  border-radius: 0 10px 10px 0;
+  padding: 2rem 3rem;
+  overflow-y: auto;
+}
+
+.book-page-left {
+  left: 0;
+  border-radius: 10px 0 0 10px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-page-left img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.book-page h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #5A452C;
+  margin-bottom: 1rem;
+}
+
+.book-page .tech-tag {
+  background-color: #E6D6C1;
+  color: #5D503C;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.book-page .description {
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: justify;
+  column-width: 15em;
+  column-gap: 2rem;
+}
+
+.book-page .modal-actions {
+  margin-top: auto; /* Pushes buttons to the bottom */
+  padding-top: 1rem;
+  border-top: 1px solid #E6D6C1;
+  display: flex;
+  gap: 1rem;
+}
+
+.book-page .modal-action-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.book-page .btn-primary {
+  background-color: #5D503C;
+  color: #FBF9F3;
+}
+
+.book-page .btn-secondary {
+  background-color: transparent;
+  color: #5D503C;
+  border: 1px solid #5D503C;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+
+.stacked-book {
+  box-shadow: 0 3px 5px rgba(0,0,0,0.25);
+  border-radius: 2px;
+}
+
+.stacked-book.book-1 {
+  background-color: #5C839A;
+  transform: translateX(-2px);
+  height: 28px;
+  width: 100%;
+}
+
+.stacked-book.book-2 {
+  background-color: #D97C4B;
+  margin-top: 4px;
+  height: 28px;
+  width: 95%;
+  align-self: center;
+}
+
+.stacked-book.book-3 {
+  background-color: #E6D6C1;
+  margin-top: 4px;
+  transform: translateX(3px);
+  height: 28px;
+  width: 100%;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .bookshelf-container {
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
+
+  .bookshelf-shadow {
+    transform: scale(0.8);
+    transform-origin: top left;
+    width: 125%; /* 1 / 0.8 */
+    filter: drop-shadow(25px 25px 15px rgba(0,0,0,0.15)) drop-shadow(5px 5px 5px rgba(0,0,0,0.08));
+  }
+
+  .book-hover-label {
+    display: none; /* Hide on mobile for a cleaner look */
+  }
+
+  .book-model {
+    width: 95vw;
+    height: 70vh;
+  }
+
+  .book-page {
+    padding: 1.5rem;
+  }
+
+  .book-page h2 {
+    font-size: 1.8rem;
+  }
+
+  .book-page .description {
+    font-size: 0.9rem;
+    column-width: 100%;
+  }
+
+  .book-page-left img {
+    height: 150px;
+  }
+
+  .modal-panel {
+    width: 90vw;
+    max-height: 80vh;
+  }
+
+  .modal-content h2 {
+    font-size: 2rem;
+  }
+}
