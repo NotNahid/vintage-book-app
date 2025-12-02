@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Project } from '../projects';
+import type { Project } from '../types';
 
 interface BookProps {
   project: Project;

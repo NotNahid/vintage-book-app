@@ -1,21 +1,4 @@
-export interface Project {
-  id: number;
-  title: string;
-  description: string;
-  technologies: string[];
-  image?: string;
-  liveUrl?: string;
-  sourceUrl?: string;
-  book: {
-    color: string;
-    height: string;
-    width: string;
-    tilted?: 'left' | 'right';
-    special?: 'band-1' | 'band-2'; // For books with decorative bands
-  };
-}
-
-export const projects: Project[] = [
+[
   {
     "id": 1023042249,
     "title": "APP",
@@ -895,4 +878,4 @@ export const projects: Project[] = [
       "width": "28px"
     }
   }
-];
+]

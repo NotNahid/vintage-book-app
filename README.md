@@ -1,73 +1,106 @@
-# React + TypeScript + Vite
+# Personal Portfolio & Digital Bookshelf
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a personal portfolio website designed as a virtual bookshelf. It showcases projects, writings, and other creative works in a unique and engaging way. The site is built with React and features a Node.js backend that integrates with Google Sheets to capture contact form submissions.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Interactive Bookshelf UI:** Projects are displayed as books on a shelf, with unique designs and hover effects.
+- **Project Modal:** Clicking a book opens a modal with detailed information about the project.
+- **Functional Contact Form:** A contact form that saves submissions directly to a Google Sheet.
+- **Responsive Design:** The site is designed to work well on all screen sizes, from mobile to desktop.
+- **Backend API:** A simple Node.js/Express backend to handle the Google Sheets integration.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend:**
+  - React
+  - TypeScript
+  - Vite
+  - Tailwind CSS
+  - React Router
 
-## Expanding the ESLint configuration
+- **Backend:**
+  - Node.js
+  - Express.js
+  - Google Sheets API (`googleapis`)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Prerequisites
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- [Node.js](https://nodejs.org/) (v18 or later recommended)
+- [npm](https://www.npmjs.com/)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Installation & Setup
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1.  **Clone the repository:**
+    ```sh
+    git clone <your-repository-url>
+    cd <repository-folder>
+    ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2.  **Set up the Frontend:**
+    - Navigate to the root directory.
+    - Install the necessary npm packages:
+      ```sh
+      npm install
+      ```
+
+3.  **Set up the Backend:**
+    - Navigate to the `api` directory:
+      ```sh
+      cd api
+      ```
+    - Install the necessary npm packages:
+      ```sh
+      npm install
+      ```
+    - **Google Sheets API Credentials:**
+      - You will need to set up a Google Cloud Platform project and a service account to use the Google Sheets API. Follow the official Google Cloud documentation to create a service account and download its JSON credentials file.
+      - Place the downloaded credentials file in the `api` directory and rename it to `credentials.json`.
+      - **Important:** The `api/.gitignore` file is configured to ignore `credentials.json`, so your credentials will not be committed to Git.
+    - **Share your Google Sheet:**
+      - Create a new Google Sheet. The first row should have the headers: `Timestamp`, `FirstName`, `LastName`, `Email`, `Message`.
+      - Share this sheet with the `client_email` found inside your `credentials.json` file, giving it "Editor" access.
+    - **Update the Sheet ID:**
+      - Open `api/index.js` and replace the placeholder `SPREADSHEET_ID` with your actual Google Sheet ID.
+
+### Running the Application
+
+To run the application, you need to have both the frontend and backend servers running concurrently.
+
+1.  **Start the Backend Server:**
+    - Open a terminal and navigate to the `api` directory.
+    - Run the following command:
+      ```sh
+      node index.js
+      ```
+    - The backend server should now be running on `http://localhost:3001`.
+
+2.  **Start the Frontend Server:**
+    - Open a **new** terminal and navigate to the root directory of the project.
+    - Run the following command:
+      ```sh
+      npm run dev
+      ```
+    - The frontend development server will start, typically on `http://localhost:5173` (or another port if 5173 is busy).
+
+The application should now be running in your browser. The contact form will send data to your local backend, which will then update your Google Sheet.
+
+## Deployment
+
+To deploy this project, you need to host the frontend and the backend separately.
+
+- **Frontend (Vite/React):**
+  - Build the static files by running `npm run build` in the root directory.
+  - Deploy the contents of the generated `dist` folder to a static hosting service like [Vercel](https://vercel.com/), [Netlify](https://www.netlify.com/), or [GitHub Pages](https://pages.github.com/).
+
+- **Backend (Node.js/Express):**
+  - Deploy the `api` directory to a Node.js hosting provider like [Heroku](https://www.heroku.com/), [Render](https://render.com/), or as a serverless function on Vercel/Netlify.
+  - **Important:** When deploying the backend, you cannot use the `credentials.json` file directly. You must copy the contents of the file and set them as an environment variable (e.g., `GOOGLE_CREDENTIALS`) on your hosting platform. The backend code would then need to be updated to parse this environment variable instead of reading the file.
+
+---
+
+This README provides a comprehensive guide for anyone looking to understand, run, or contribute to the project.

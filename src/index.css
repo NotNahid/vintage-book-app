@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active {
+  color: black;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.contact-form-container {
+  background-color: #FBF9F3;
+  border: 2px solid #E6D6C1;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .contact-form-container {
+    padding: 3rem;
+  }
+}
+
+.contact-form-title {
+  color: #5A452C;
+}
+
+.contact-form-button {
+  background-color: #5D503C;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}

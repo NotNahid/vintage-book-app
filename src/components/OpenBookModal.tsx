@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import type { Project } from '../projects';
+import React, { useState, useEffect, useRef } from 'react';
+import type { Project } from '../types';
 
 interface OpenBookModalProps {
   project: Project;
@@ -8,10 +8,27 @@ interface OpenBookModalProps {
 
 const OpenBookModal: React.FC<OpenBookModalProps> = ({ project, onClose }) => {
   const [isActive, setIsActive] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsActive(true), 50);
-    return () => clearTimeout(timer);
+    const timer = setTimeout(() => {
+      setIsActive(true);
+      closeButtonRef.current?.focus();
+    }, 50);
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        handleClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   const handleClose = () => {
@@ -20,13 +37,20 @@ const OpenBookModal: React.FC<OpenBookModalProps> = ({ project, onClose }) => {
   };
 
   return (
-    <div className={`book-modal-overlay ${isActive ? 'active' : ''}`} onClick={handleClose}>
+    <div
+      className={`book-modal-overlay ${isActive ? 'active' : ''}`}
+      onClick={handleClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="book-title"
+      ref={modalRef}
+    >
       <div className="book-container-3d">
         <div className="book-model" onClick={(e) => e.stopPropagation()}>
           {/* Left Page */}
           <div className="book-page book-page-left">
             {project.image && <img src={project.image} alt={project.title} />}
-            <h2>{project.title}</h2>
+            <h2 id="book-title">{project.title}</h2>
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech) => (
                 <span key={tech} className="tech-tag">{tech}</span>
@@ -53,6 +77,9 @@ const OpenBookModal: React.FC<OpenBookModalProps> = ({ project, onClose }) => {
                 )}
               </div>
             )}
+            <button onClick={handleClose} ref={closeButtonRef} className="absolute top-4 right-4">
+              Close
+            </button>
           </div>
 
           {/* Cover */}

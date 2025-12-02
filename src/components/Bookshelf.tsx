@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { projects, type Project } from '../projects';
+import React, { useState, useEffect } from 'react';
+import type { Project } from '../types';
+import projectsData from '../projects.json';
 import OpenBookModal from './OpenBookModal';
 import StackedBooks from './StackedBooks';
 import PottedPlant from './PottedPlant';
@@ -7,6 +8,11 @@ import Book from './Book';
 
 const Bookshelf: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    setProjects(projectsData);
+  }, []);
 
   const topShelfProjects = projects.slice(0, 21);
   const bottomShelfProjects = projects.slice(21, 36);
