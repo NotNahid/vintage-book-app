@@ -3,7 +3,7 @@
 /* Custom styles from the original HTML */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #FBF9F3;
+    background-color: #F7F7F7;
     color: #5D503C;
 }
 .font-playfair {
@@ -12,7 +12,7 @@ body {
 
 /* Bookshelf container shadow to simulate depth against the wall */
 .bookshelf-shadow {
-    filter: drop-shadow(45px 45px 25px rgba(0,0,0,0.18)) drop-shadow(8px 8px 8px rgba(0,0,0,0.08));
+    filter: drop-shadow(20px 20px 30px rgba(0,0,0,0.12));
 }
 
 /* Individual book styling */
@@ -47,8 +47,8 @@ body {
 .shelf {
     background-color: #C6A889;
     box-shadow: 
-        0 6px 12px rgba(0,0,0,0.25),
-        inset 0 2px 4px rgba(0,0,0,0.15);
+        0 8px 16px rgba(0,0,0,0.15),
+        inset 0 2px 4px rgba(0,0,0,0.1);
     height: 14px;
     border-radius: 3px;
 }
@@ -181,7 +181,7 @@ body {
   width: 50%;
   height: 100%;
   top: 0;
-  background-color: #FBF9F3;
+  background-color: #F7F7F7;
   box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 
@@ -338,18 +338,6 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .bookshelf-container {
-    overflow-x: auto;
-    padding-bottom: 1rem;
-  }
-
-  .bookshelf-shadow {
-    transform: scale(0.8);
-    transform-origin: top left;
-    width: 125%; /* 1 / 0.8 */
-    filter: drop-shadow(25px 25px 15px rgba(0,0,0,0.15)) drop-shadow(5px 5px 5px rgba(0,0,0,0.08));
-  }
-
   .book-hover-label {
     display: none; /* Hide on mobile for a cleaner look */
   }
@@ -384,4 +372,45 @@ body {
   .modal-content h2 {
     font-size: 2rem;
   }
+}
+
+/* Dark Mode Styles */
+.dark .shelf {
+  background-color: #4A5568; /* A darker, cool gray for the shelf */
+  box-shadow: 
+    0 8px 16px rgba(0,0,0,0.3),
+    inset 0 2px 4px rgba(0,0,0,0.25);
+}
+
+.dark .picture-frame {
+  border-color: #718096; /* A lighter gray for the frame border */
+}
+
+.dark .book-page,
+.dark .book-cover {
+  background-color: #2D3748; /* Dark slate background for pages */
+}
+
+.dark .book-page h2 {
+  color: #E2E8F0; /* Lighter text for titles */
+}
+
+.dark .book-page .tech-tag {
+  background-color: #4A5568;
+  color: #E2E8F0;
+}
+
+.dark .book-page .modal-actions {
+  border-top-color: #4A5568;
+}
+
+.dark .book-page .btn-primary {
+  background-color: #E2E8F0;
+  color: #2D3748;
+}
+
+.dark .book-page .btn-secondary {
+  background-color: transparent;
+  color: #E2E8F0;
+  border-color: #E2E8F0;
 }

@@ -15,6 +15,22 @@
   animation: fade-in 0.5s ease-out forwards;
 }
 
+/* New keyframes for zoom-in-fade */
+@keyframes zoom-in-fade {
+  from {
+    opacity: 0;
+    transform: scale(0.8); /* Start smaller */
+  }
+  to {
+    opacity: 1;
+    transform: scale(1); /* Zoom to normal size */
+  }
+}
+
+.animate-zoom-in {
+  animation: zoom-in-fade 0.7s ease-out forwards;
+}
+
 .contact-form-container {
   background-color: #FBF9F3;
   border: 2px solid #E6D6C1;
@@ -36,4 +52,22 @@
 .contact-form-button {
   background-color: #5D503C;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Dark Mode Styles */
+.dark .active {
+  color: white;
+}
+
+.dark .contact-form-container {
+  background-color: #2D3748;
+  border-color: #4A5568;
+}
+
+.dark .contact-form-title {
+  color: #E2E8F0;
+}
+
+.dark .contact-form-button {
+  background-color: #4A5568;
 }

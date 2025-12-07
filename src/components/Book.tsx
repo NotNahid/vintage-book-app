@@ -11,14 +11,12 @@ const Book: React.FC<BookProps> = ({ project, onClick }) => {
     <div
       key={project.id}
       onClick={onClick}
-      className={`book cursor-pointer ${
+      className={`book cursor-pointer w-8 h-32 md:h-full ${
         project.book.tilted === 'left' ? 'book-tilted-left' : ''
       } ${
         project.book.tilted === 'right' ? 'book-tilted-right' : ''
       }`}
       style={{
-        width: project.book.width,
-        height: project.book.height,
         backgroundColor: project.book.color,
       }}
     >

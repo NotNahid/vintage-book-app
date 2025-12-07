@@ -18,10 +18,11 @@ const Contact: React.FC = () => {
     setStatus('sending');
 
     try {
-      const response = await fetch('/api/submit-form', {
+      const response = await fetch('https://formspree.io/f/xanrdwdn', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify(formData),
       });

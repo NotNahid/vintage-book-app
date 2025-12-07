@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Added Link import
 import type { Project } from '../types';
 import projectsData from '../projects.json';
 import OpenBookModal from './OpenBookModal';
 import StackedBooks from './StackedBooks';
 import PottedPlant from './PottedPlant';
 import Book from './Book';
+import Lamp from './Lamp'; // Import the new Lamp component
+import Notebook from './Notebook'; // Import new accessory
+import Tablet from './Tablet';     // Import new accessory
+import RolledPapers from './RolledPapers'; // Import new accessory
+import ArtJar from './ArtJar';     // Import new accessory
 
-const Bookshelf: React.FC = () => {
+interface BookshelfProps {
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
+}
+
+const Bookshelf: React.FC<BookshelfProps> = ({ theme, toggleTheme }) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
 
@@ -29,10 +40,19 @@ const Bookshelf: React.FC = () => {
       <div className="relative w-full max-w-4xl bookshelf-shadow">
     {/* Top Shelf */}
     <div className="relative">
-        <div className="flex items-end justify-center h-auto md:h-40 space-x-1 px-2 flex-wrap books-grid">
+        <div className="flex items-end justify-center h-auto md:h-40 space-x-1 px-2 flex-wrap books-grid" style={{ flexWrap: 'wrap' }}>
+            <div className="absolute left-0 bottom-0">
+              <Notebook />
+            </div>
+            <div className="absolute left-16 bottom-0">
+              <Tablet />
+            </div>
             {topShelfProjects.map(renderBook)}
-            <div className="picture-frame mx-auto my-4 md:mx-0 md:my-0">
+            <Link to="/gallery" state={{ fromPictureFrame: true }} className="picture-frame mx-auto my-4 md:mx-0 md:my-0 cursor-pointer">
               <div className="frame-inner"></div>
+            </Link>
+            <div className="absolute right-0 bottom-0">
+              <Lamp theme={theme} toggleTheme={toggleTheme} />
             </div>
           </div>
           <div className="shelf w-full"></div>
@@ -40,7 +60,13 @@ const Bookshelf: React.FC = () => {
 
         {/* Bottom Shelf */}
         <div className="relative mt-12">
-          <div className="flex items-end justify-center h-auto md:h-40 space-x-1 px-2 flex-wrap books-grid">
+          <div className="flex items-end justify-center h-auto md:h-40 space-x-1 px-2 flex-wrap books-grid" style={{ flexWrap: 'wrap' }}>
+            <div className="absolute left-0 bottom-0">
+              <RolledPapers />
+            </div>
+            <div className="absolute left-20 bottom-0">
+              <ArtJar />
+            </div>
             {bottomShelfProjects.map(renderBook)}
             
             <StackedBooks />

@@ -8,9 +8,10 @@ export interface Project {
   sourceUrl?: string;
   book: {
     color: string;
-    height: string;
-    width: string;
-    tilted?: 'left' | 'right';
-    special?: 'band-1' | 'band-2'; // For books with decorative bands
+    height?: string;
+    width?: string;
+    tilted?: string | null;
+    special?: string | null;
+
   };
 }
